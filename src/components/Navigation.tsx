@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Menu, X, Phone } from 'lucide-react'
 import { restaurant } from '@/lib/data'
 
@@ -13,17 +13,29 @@ const links = [
 export default function Navigation() {
   const [open, setOpen]       = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden]     = useState(false)
+  const lastY = useRef(0)
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handler)
+    const handler = () => {
+      const y = window.scrollY
+      setScrolled(y > 50)
+      if (y > lastY.current && y > 80) {
+        setHidden(true)   // scrolling down → hide
+      } else {
+        setHidden(false)  // scrolling up → show
+      }
+      lastY.current = y
+    }
+    window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
   return (
     <>
       <nav className={[
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        hidden && !open ? '-translate-y-full' : 'translate-y-0',
         scrolled
           ? 'bg-g-black/96 backdrop-blur-md border-b border-g-border'
           : 'bg-transparent',
