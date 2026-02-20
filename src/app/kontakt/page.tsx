@@ -4,6 +4,9 @@ import Footer from '@/components/Footer'
 import Reveal from '@/components/Reveal'
 import { restaurant } from '@/lib/data'
 
+const CF = 'var(--font-cormorant)'
+const DM = 'var(--font-dm)'
+
 export const metadata: Metadata = {
   title: 'Kontakt & Find os',
   description: 'Find Gastro No 8 på Blåvandvej 8a, 6857 Blåvand. Ring på 61 31 72 40 — bordbestilling og takeaway.',
@@ -12,89 +15,83 @@ export const metadata: Metadata = {
 export default function Kontakt() {
   return (
     <>
-      <div className="bg-gastro-black min-h-screen pt-24 pb-20">
-        <div className="container mx-auto px-5 max-w-5xl">
+      <div className="bg-g-black min-h-screen pt-24 pb-24">
+        <div className="max-w-5xl mx-auto px-5 sm:px-8">
 
-          <Reveal direction="up" distance={16} duration={700}>
+          <Reveal direction="up" distance={14} duration={700}>
             <div className="text-center mb-16">
-              <p className="text-gastro-teal text-[11px] uppercase tracking-[0.3em] font-syne mb-3">Gastro No 8</p>
-              <h1 className="font-syne font-black text-5xl sm:text-6xl text-gastro-off mb-4">Find os</h1>
-              <div className="w-10 h-px bg-gastro-teal mx-auto shadow-[0_0_8px_rgba(46,196,182,0.6)]" />
+              <p className="text-g-teal text-[10px] uppercase tracking-[0.35em] mb-4" style={{ fontFamily: DM }}>Gastro No 8</p>
+              <h1
+                className="text-5xl sm:text-6xl font-light uppercase tracking-[0.08em] text-g-off mb-5"
+                style={{ fontFamily: CF }}
+              >
+                Find os
+              </h1>
+              <div className="w-10 h-px bg-g-teal/50 mx-auto" />
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
 
             {/* Contact card */}
-            <Reveal direction="left" distance={20} duration={700}>
-              <div className="bg-gastro-surface border border-gastro-border rounded-2xl p-7 h-full">
-                <h2 className="font-syne font-bold text-gastro-off text-lg mb-6">Kontaktoplysninger</h2>
+            <Reveal direction="left" distance={18} duration={700}>
+              <div className="bg-g-surface border border-g-border rounded-xl p-7 h-full">
+                <h2
+                  className="text-xl font-light uppercase tracking-widest text-g-off mb-7"
+                  style={{ fontFamily: CF }}
+                >
+                  Kontakt
+                </h2>
                 <div className="space-y-5">
-                  <a
-                    href={`tel:${restaurant.phone.replace(/\s/g, '')}`}
-                    className="flex items-center gap-4 group"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-gastro-teal/10 border border-gastro-teal/20 flex items-center justify-center shrink-0 group-hover:bg-gastro-teal/20 transition-colors">
-                      <Phone size={16} className="text-gastro-teal" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest text-gastro-muted mb-0.5">Telefon</p>
-                      <p className="text-gastro-text font-syne font-semibold group-hover:text-gastro-teal transition-colors">
-                        {restaurant.phone}
-                      </p>
-                    </div>
-                  </a>
-
-                  <a
-                    href={`mailto:${restaurant.email}`}
-                    className="flex items-center gap-4 group"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-gastro-teal/10 border border-gastro-teal/20 flex items-center justify-center shrink-0 group-hover:bg-gastro-teal/20 transition-colors">
-                      <Mail size={16} className="text-gastro-teal" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest text-gastro-muted mb-0.5">Email</p>
-                      <p className="text-gastro-text font-syne font-semibold group-hover:text-gastro-teal transition-colors break-all">
-                        {restaurant.email}
-                      </p>
-                    </div>
-                  </a>
+                  {[
+                    {
+                      icon: Phone, label: 'Telefon', value: restaurant.phone,
+                      href: `tel:${restaurant.phone.replace(/\s/g,'')}`,
+                    },
+                    {
+                      icon: Mail, label: 'Email', value: restaurant.email,
+                      href: `mailto:${restaurant.email}`,
+                    },
+                  ].map(({ icon: Icon, label, value, href }) => (
+                    <a key={label} href={href} className="flex items-center gap-4 group">
+                      <div className="w-9 h-9 rounded-lg border border-g-border flex items-center justify-center shrink-0 group-hover:border-g-teal/50 transition-colors">
+                        <Icon size={14} strokeWidth={1.5} className="text-g-teal" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-g-muted mb-0.5" style={{ fontFamily: DM }}>{label}</p>
+                        <p className="text-g-text text-sm group-hover:text-g-teal transition-colors break-all" style={{ fontFamily: DM }}>{value}</p>
+                      </div>
+                    </a>
+                  ))}
 
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-gastro-teal/10 border border-gastro-teal/20 flex items-center justify-center shrink-0">
-                      <MapPin size={16} className="text-gastro-teal" />
+                    <div className="w-9 h-9 rounded-lg border border-g-border flex items-center justify-center shrink-0">
+                      <MapPin size={14} strokeWidth={1.5} className="text-g-teal" />
                     </div>
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-gastro-muted mb-0.5">Adresse</p>
-                      <p className="text-gastro-text font-syne font-semibold">{restaurant.address}</p>
+                      <p className="text-[10px] uppercase tracking-widest text-g-muted mb-0.5" style={{ fontFamily: DM }}>Adresse</p>
+                      <p className="text-g-text text-sm" style={{ fontFamily: DM }}>{restaurant.address}</p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-gastro-teal/10 border border-gastro-teal/20 flex items-center justify-center shrink-0">
-                      <Clock size={16} className="text-gastro-teal" />
+                    <div className="w-9 h-9 rounded-lg border border-g-border flex items-center justify-center shrink-0">
+                      <Clock size={14} strokeWidth={1.5} className="text-g-teal" />
                     </div>
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-gastro-muted mb-0.5">Åbningstider</p>
-                      <p className="text-gastro-text font-syne font-semibold">Frokost 11:00–16:00</p>
-                      <p className="text-gastro-muted text-sm">Ring for aftenmenu og sæsonåbningstider</p>
+                      <p className="text-[10px] uppercase tracking-widest text-g-muted mb-0.5" style={{ fontFamily: DM }}>Åbningstider</p>
+                      <p className="text-g-text text-sm" style={{ fontFamily: DM }}>Frokost 11:00–16:00</p>
+                      <p className="text-g-muted text-xs mt-0.5" style={{ fontFamily: DM }}>Ring for aftenmenu og sæsonåbningstider</p>
                     </div>
                   </div>
 
-                  <a
-                    href={restaurant.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 group"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-gastro-teal/10 border border-gastro-teal/20 flex items-center justify-center shrink-0 group-hover:bg-gastro-teal/20 transition-colors">
-                      <Facebook size={16} className="text-gastro-teal" />
+                  <a href={restaurant.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+                    <div className="w-9 h-9 rounded-lg border border-g-border flex items-center justify-center shrink-0 group-hover:border-g-teal/50 transition-colors">
+                      <Facebook size={14} strokeWidth={1.5} className="text-g-teal" />
                     </div>
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-gastro-muted mb-0.5">Facebook</p>
-                      <p className="text-gastro-text font-syne font-semibold group-hover:text-gastro-teal transition-colors">
-                        Gastro No 8
-                      </p>
+                      <p className="text-[10px] uppercase tracking-widest text-g-muted mb-0.5" style={{ fontFamily: DM }}>Facebook</p>
+                      <p className="text-g-text text-sm group-hover:text-g-teal transition-colors" style={{ fontFamily: DM }}>Gastro No 8</p>
                     </div>
                   </a>
                 </div>
@@ -102,13 +99,13 @@ export default function Kontakt() {
             </Reveal>
 
             {/* Map */}
-            <Reveal direction="right" distance={20} duration={700} delay={100}>
-              <div className="rounded-2xl overflow-hidden border border-gastro-border h-full min-h-[360px]">
+            <Reveal direction="right" distance={18} duration={700} delay={80}>
+              <div className="rounded-xl overflow-hidden border border-g-border min-h-[360px] h-full">
                 <iframe
                   src="https://maps.google.com/maps?q=Blåvandvej+8a,+6857+Blåvand&output=embed&z=15"
                   width="100%"
                   height="100%"
-                  style={{ minHeight: 360, border: 0, filter: 'grayscale(60%) invert(90%) hue-rotate(180deg)' }}
+                  style={{ minHeight: 360, border: 0, filter: 'grayscale(70%) invert(92%) hue-rotate(180deg)' }}
                   allowFullScreen
                   loading="lazy"
                   title="Gastro No 8 på kort"
@@ -119,19 +116,24 @@ export default function Kontakt() {
 
           {/* CTA */}
           <Reveal direction="up" distance={12}>
-            <div className="rounded-2xl bg-gastro-surface border border-gastro-teal/20 p-8 text-center neon-border">
-              <p className="font-syne font-black text-xl text-gastro-off mb-1">Book dit bord</p>
-              <p className="text-gastro-muted text-sm mb-6">Bordbestilling og takeaway — ring direkte til os.</p>
-              <a
-                href={`tel:${restaurant.phone.replace(/\s/g, '')}`}
-                className="inline-flex items-center gap-2 bg-gastro-teal hover:bg-[#3dd6c7] text-gastro-black font-syne font-bold px-8 py-4 rounded-xl transition text-base"
+            <div className="rounded-xl border border-g-border bg-g-surface p-8 sm:p-10 text-center">
+              <p
+                className="text-2xl sm:text-3xl font-light text-g-off uppercase tracking-wide mb-2"
+                style={{ fontFamily: CF }}
               >
-                <Phone size={17} />
+                Book dit bord
+              </p>
+              <p className="text-g-muted text-sm mb-6" style={{ fontFamily: DM }}>Bordbestilling og takeaway — ring direkte.</p>
+              <a
+                href={`tel:${restaurant.phone.replace(/\s/g,'')}`}
+                className="inline-flex items-center gap-2 bg-g-teal hover:bg-[#38d4c6] text-g-black text-sm font-medium px-8 py-4 rounded-lg transition-all"
+                style={{ fontFamily: DM }}
+              >
+                <Phone size={15} strokeWidth={1.5} />
                 Ring — {restaurant.phone}
               </a>
             </div>
           </Reveal>
-
         </div>
       </div>
       <Footer />

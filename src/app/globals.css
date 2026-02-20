@@ -1,52 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --font-syne: 'Syne', sans-serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
   --font-dm: 'DM Sans', sans-serif;
 
-  --color-gastro-black:    #0d0b09;
-  --color-gastro-surface:  #181410;
-  --color-gastro-card:     #221e1a;
-  --color-gastro-border:   #2e2822;
-  --color-gastro-teal:     #2ec4b6;
-  --color-gastro-teal-dim: #1a7a72;
-  --color-gastro-amber:    #c8a97e;
-  --color-gastro-muted:    #7a6e62;
-  --color-gastro-text:     #ede5d8;
-  --color-gastro-off:      #f5f0e8;
+  --color-g-black:   #0c0a08;
+  --color-g-surface: #161210;
+  --color-g-card:    #1e1a17;
+  --color-g-border:  #2b2420;
+  --color-g-teal:    #2ec4b6;
+  --color-g-amber:   #c8a97e;
+  --color-g-muted:   #7a6e62;
+  --color-g-text:    #e8ddd0;
+  --color-g-off:     #f2ebe0;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background: #0d0b09;
-  color: #ede5d8;
+  background: #0c0a08;
+  color: #e8ddd0;
   font-family: 'DM Sans', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-.font-syne { font-family: 'Syne', sans-serif; }
-.font-dm   { font-family: 'DM Sans', sans-serif; }
-
-/* Neon glow — matches real Gastro No 8 sign */
-.neon {
-  color: #3dd6c7;
-  text-shadow:
-    0 0 8px  rgba(61, 214, 199, 0.95),
-    0 0 18px rgba(61, 214, 199, 0.75),
-    0 0 36px rgba(61, 214, 199, 0.50),
-    0 0 72px rgba(61, 214, 199, 0.25);
-}
-
-/* Subtle neon for inline use */
-.neon-sm {
-  color: #2ec4b6;
-  text-shadow:
-    0 0 6px  rgba(46, 196, 182, 0.8),
-    0 0 14px rgba(46, 196, 182, 0.5);
-}
-
-/* Neon border glow */
-.neon-border {
-  box-shadow:
-    0 0 8px  rgba(46, 196, 182, 0.4),
-    inset 0 0 8px rgba(46, 196, 182, 0.05);
 }

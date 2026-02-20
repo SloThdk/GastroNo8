@@ -5,8 +5,8 @@ import { Menu, X, Phone } from 'lucide-react'
 import { restaurant } from '@/lib/data'
 
 const links = [
-  { href: '/',       label: 'Hjem'   },
-  { href: '/menu',   label: 'Menu'   },
+  { href: '/',        label: 'Hjem'    },
+  { href: '/menu',    label: 'Menu'    },
   { href: '/kontakt', label: 'Kontakt' },
 ]
 
@@ -15,7 +15,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 40)
+    const handler = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
@@ -23,28 +23,35 @@ export default function Navigation() {
   return (
     <>
       <nav className={[
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         scrolled
-          ? 'bg-gastro-black/95 backdrop-blur-md border-b border-gastro-border shadow-lg shadow-black/50'
+          ? 'bg-g-black/96 backdrop-blur-md border-b border-g-border'
           : 'bg-transparent',
       ].join(' ')}>
-        <div className="container mx-auto px-5 max-w-6xl flex items-center justify-between h-16">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-16 sm:h-18">
 
           {/* Logo */}
-          <Link href="/" className="flex flex-col leading-none group">
-            <span className="font-syne font-black text-xl tracking-tight neon group-hover:opacity-90 transition-opacity">
-              GASTRO N<span className="inline-block -translate-y-0.5">o</span>8
+          <Link href="/" className="group flex flex-col leading-none">
+            <span
+              className="text-base sm:text-lg font-semibold tracking-[0.15em] uppercase text-g-off group-hover:text-g-teal transition-colors duration-300"
+              style={{ fontFamily: 'var(--font-cormorant)' }}
+            >
+              Gastro No 8
             </span>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-gastro-muted font-dm">Cafe &amp; Bar</span>
+            <span className="text-[9px] uppercase tracking-[0.3em] text-g-muted mt-0.5"
+              style={{ fontFamily: 'var(--font-dm)' }}>
+              Cafe &amp; Bar · Blåvand
+            </span>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-7">
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-8">
             {links.map(l => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm font-dm text-gastro-muted hover:text-gastro-text transition-colors duration-200 tracking-wide"
+                className="text-sm tracking-wide text-g-muted hover:text-g-text transition-colors duration-200"
+                style={{ fontFamily: 'var(--font-dm)' }}
               >
                 {l.label}
               </Link>
@@ -52,52 +59,59 @@ export default function Navigation() {
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-4">
             <a
-              href={`tel:${restaurant.phone.replace(/\s/g, '')}`}
-              className="flex items-center gap-1.5 text-gastro-teal hover:text-gastro-off transition-colors text-sm font-dm"
+              href={`tel:${restaurant.phone.replace(/\s/g,'')}`}
+              className="flex items-center gap-1.5 text-g-muted hover:text-g-teal transition-colors text-sm"
+              style={{ fontFamily: 'var(--font-dm)' }}
             >
-              <Phone size={14} />
+              <Phone size={13} strokeWidth={1.5} />
               {restaurant.phone}
             </a>
             <a
-              href={`tel:${restaurant.phone.replace(/\s/g, '')}`}
-              className="bg-gastro-teal hover:bg-[#3dd6c7] text-gastro-black font-syne font-bold text-sm px-4 py-2 rounded-lg transition-colors duration-200"
+              href={`tel:${restaurant.phone.replace(/\s/g,'')}`}
+              className="border border-g-teal/70 text-g-teal hover:bg-g-teal hover:text-g-black text-sm px-5 py-2 rounded-lg transition-all duration-200 tracking-wide"
+              style={{ fontFamily: 'var(--font-dm)' }}
             >
-              Bestil nu
+              Bestil
             </a>
           </div>
 
-          {/* Mobile burger */}
+          {/* Mobile button */}
           <button
-            className="md:hidden text-gastro-text p-1"
+            className="md:hidden text-g-text p-1"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            {open ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
           </button>
         </div>
       </nav>
 
       {/* Mobile drawer */}
       {open && (
-        <div className="fixed inset-0 z-40 bg-gastro-black/98 backdrop-blur-md flex flex-col items-center justify-center gap-8 md:hidden">
+        <div
+          className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-10"
+          style={{ background: 'rgba(12,10,8,0.98)', backdropFilter: 'blur(12px)' }}
+        >
           {links.map(l => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="font-syne text-3xl font-bold text-gastro-text hover:neon transition-all"
+              className="text-4xl font-light text-g-off hover:text-g-teal transition-colors tracking-widest uppercase"
+              style={{ fontFamily: 'var(--font-cormorant)' }}
             >
               {l.label}
             </Link>
           ))}
           <a
-            href={`tel:${restaurant.phone.replace(/\s/g, '')}`}
-            className="mt-4 flex items-center gap-2 bg-gastro-teal text-gastro-black font-syne font-bold text-lg px-8 py-4 rounded-xl"
+            href={`tel:${restaurant.phone.replace(/\s/g,'')}`}
+            className="mt-4 flex items-center gap-2 border border-g-teal/60 text-g-teal px-8 py-3.5 rounded-xl text-base"
+            style={{ fontFamily: 'var(--font-dm)' }}
           >
-            <Phone size={18} />
-            Ring nu
+            <Phone size={16} strokeWidth={1.5} />
+            {restaurant.phone}
           </a>
         </div>
       )}
