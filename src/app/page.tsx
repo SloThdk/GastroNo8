@@ -22,13 +22,13 @@ export default function Home() {
           alt="Gastro No 8"
           fill
           priority
-          className="object-cover object-center scale-105"
+          className="object-cover object-center hero-img"
         />
 
         {/* Dark overlay — heavier so text is always legible */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/65 to-g-black" />
 
-        <div className="relative z-10 text-center px-5 max-w-3xl mx-auto">
+        <div className="relative z-10 text-center px-5 max-w-3xl mx-auto hero-text">
 
           {/* Eyebrow */}
           <p
