@@ -40,10 +40,11 @@ export default function Home() {
 
           {/* Main heading — elegant, NOT bold */}
           <h1
-            className="text-[clamp(3rem,12vw,7rem)] font-light leading-none tracking-[0.06em] uppercase text-g-off mb-3"
+            className="font-light leading-none tracking-[0.06em] uppercase text-g-off mb-3"
             style={{ fontFamily: CF }}
           >
-            Gastro No 8
+            <span className="block text-[clamp(2.6rem,10vw,6rem)]">Gastro</span>
+            <span className="block text-[clamp(2.6rem,10vw,6rem)]">No 8</span>
           </h1>
 
           {/* Thin teal rule */}
